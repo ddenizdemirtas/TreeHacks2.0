@@ -4,7 +4,6 @@ import pytesseract
 
 # Function to write OCR results to a file
 
-
 def write_to_file(file_path, data):
     with open(file_path, 'a') as file:
         file.write(data + '\n')
@@ -13,7 +12,7 @@ def write_to_file(file_path, data):
 # Define the path for the output text file
 output_file = 'output.txt'
 
-fileName = './WineListImages/wineMenu1.png'
+fileName = './WineListImages/example18.jpeg'
 
 # Open the output file and clear any existing content
 with open(output_file, 'w') as file:
@@ -50,13 +49,13 @@ for y in range(height):
             np.copy(inputImage), (0, line_start), (width, line_end), (0, 255, 0), 2)
 
         # Show the highlighted line on the original image
-        cv2.imshow('Line Highlighted', line_highlighted)
+        # cv2.imshow('Line Highlighted', line_highlighted)
 
         # Wait for the 'a' key to be pressed to move to the next line
-        while True:
-            if cv2.waitKey(1) & 0xFF == ord('a'):
-                break
+        # while True:
+        #     if cv2.waitKey(1) & 0xFF == ord('a'):
+        #         break
 
         line_start = None
 
-cv2.destroyAllWindows()
+# cv2.destroyAllWindows()

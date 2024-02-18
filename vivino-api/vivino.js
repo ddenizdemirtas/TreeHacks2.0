@@ -195,30 +195,27 @@ const run = async (
 			const response = await page.goto(`${BASE_URL}${SEARCH_PATH}${name}&start=${index}`, {
 				waitUntil: 'networkidle2',
 			});
-
+		
 			if (response.ok()) {
 				pause = 0;
 				const pageItems = await page.evaluate(collectItems);
-				if (pageItems.length) {
-					console.log('Results were collected from the page:', index);
-					result.vinos.push(...pageItems);
+				const validItem = pageItems.find(item => item.price != null && item.average_rating != null);
+				if (validItem) {
+					console.log('Found a valid item:', validItem.name);
+					result.vinos.push(validItem);
+					break; // Break out of the loop once a valid item is found
+				} else if (pageItems.length && index < 3) {
+					// Continue to the next page if not beyond the second page
+					console.log('No valid items found on page:', index);
 					index++;
 					isNext = true;
 				} else {
-					// no more data
+					// Stop if there are no items or we've reached the second page
+					console.log('No more pages to search or page limit reached.');
 					result.status = STATUS_FULL;
 				}
-			} else if (response.status() === 429) {
-				pause++;
-				await page.waitForTimeout(pause * PAUSE_MULTIPLIER * 1000);
-				console.log(`Waited for ${pause * PAUSE_MULTIPLIER} seconds on the page ${index}`);
-				isNext = true;
-			} else {
-				// return some error info
-				result.http_status = response.status(); // http status
-				result.page_index = index; // index of the problem page
-				result.status = STATUS_ERROR_RESPONSE;
 			}
+			
 		} while (isNext);
 
 		// Filter data
@@ -229,6 +226,7 @@ const run = async (
 			if (maxRatings && e.ratings > maxRatings) return false;
 			if (minAverage && e.average_rating < minAverage) return false;
 			if (maxAverage && e.average_rating > maxAverage) return false;
+			if (e.price == null) return false;
 			return true;
 		});
 

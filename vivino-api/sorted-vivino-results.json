@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Odette Estate Cabernet Sauvignon",
+    "price": 184.95,
+    "average_rating": 4.6,
+    "image": "https://images.vivino.com/thumbs/o1McdLkiQE64AEsvfmQJpg_pb_300x300.png"
+  },
+  {
+    "name": "Odette Reserve Chardonnay",
+    "price": 89,
+    "average_rating": 4.4,
+    "image": "https://images.vivino.com/thumbs/oUTzXrDRRee5erMbBYhadA_pb_300x300.png"
+  },
+  {
+    "name": "Adaptation Cabernet Sauvignon",
+    "price": 80.95,
+    "average_rating": 4.3,
+    "image": "https://images.vivino.com/thumbs/OpZa3okqQzuG6HUbGkusqQ_pb_300x300.png"
+  },
+  {
+    "name": "Adaptation Petite Sirah",
+    "price": 59.99,
+    "average_rating": 4.3,
+    "image": "https://images.vivino.com/thumbs/C7IFZSCZRzmaCUoG53uxEw_pb_300x300.png"
+  },
+  {
+    "name": "Cade Sauvignon Blanc",
+    "price": 41.99,
+    "average_rating": 4.1,
+    "image": "https://images.vivino.com/thumbs/1itIoGZVTkCYJUhQ9aqN3g_pb_300x300.png"
+  }
+]
